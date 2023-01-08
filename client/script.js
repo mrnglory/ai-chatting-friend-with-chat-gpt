@@ -33,3 +33,10 @@ function type_text(element, text) {
     }, 20)
 }
 
+function generate_unique_id() {
+    const timestamp = Date.now();
+    const random_number = Math.random();
+    const hexadecimal_string = random_number.toString(16);
+
+    return `id-${timestamp}-${hexadecimal_string}`;
+}
