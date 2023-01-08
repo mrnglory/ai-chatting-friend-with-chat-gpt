@@ -20,6 +20,7 @@ function message_loader(element) {
     }, 300)
 }
 
+
 function type_text(element, text) {
     let index = 0;
 
@@ -33,6 +34,7 @@ function type_text(element, text) {
     }, 20)
 }
 
+
 function generate_unique_id() {
     const timestamp = Date.now();
     const random_number = Math.random();
@@ -40,6 +42,7 @@ function generate_unique_id() {
 
     return `id-${timestamp}-${hexadecimal_string}`;
 }
+
 
 function message_divider (is_ai, value, unique_id) {
     return (
@@ -57,4 +60,28 @@ function message_divider (is_ai, value, unique_id) {
         </div>
         `
     )
+}
+
+
+const submit_handler = async (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+
+    // user's chat message
+    chat_container.innerHTML += message_divider(false, data.get("prompt"));
+
+    form.reset();
+
+
+    // bot's chat message
+    const unique_id = generate_unique_id();
+    chat_container.innerHTML += message_divider(true, " ", unique_id);
+
+    chat_container.scrollTop = chat_container.scrollHeight;
+
+    const message_div = document.getElementById(unique_id);
+
+    message_loader(message_div);
 }
