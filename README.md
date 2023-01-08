@@ -1,5 +1,6 @@
 # ai-chatting-friend-with-chat-gpt
-Let's make online chatting friends through ChatGPT.
+Let's make online chatting friends through ChatGPT. <br/>
+domains: https://ai-chatting-friend.vercel.app/
 
 
 ## Deployments
