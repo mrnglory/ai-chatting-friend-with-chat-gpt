@@ -85,3 +85,11 @@ const submit_handler = async (e) => {
 
     message_loader(message_div);
 }
+
+
+form.addEventListener("submit", submit_handler);
+form.addEventListener("keyup", (e) => {
+    if (e.keyCode === 13) {
+        submit_handler(e);
+    }
+})
