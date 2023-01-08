@@ -40,3 +40,21 @@ function generate_unique_id() {
 
     return `id-${timestamp}-${hexadecimal_string}`;
 }
+
+function message_divider (is_ai, value, unique_id) {
+    return (
+        `
+        <div class="wrapper ${is_ai && "ai"}">
+            <div class="chat">
+                <div className="profile">
+                    <img 
+                        src="${is_ai ? bot : user}"
+                        alt="${is_ai ? 'bot' : 'user'}"
+                    >
+                </div>
+                <div class="message" id=${unique_id}>${value}</div>
+            </div>
+        </div>
+        `
+    )
+}
