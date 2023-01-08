@@ -26,7 +26,7 @@ function type_text(element, text) {
 
     let interval = setInterval(() => {
         if (index < text.length) {
-            element.innerHTML += text.chartAt(index);
+            element.innerHTML += text.charAt(index);
             index++;
         } else {
             clearInterval(interval);
@@ -49,7 +49,7 @@ function message_divider (is_ai, value, unique_id) {
         `
         <div class="wrapper ${is_ai && "ai"}">
             <div class="chat">
-                <div className="profile">
+                <div class="profile">
                     <img 
                         src="${is_ai ? bot : user}"
                         alt="${is_ai ? 'bot' : 'user'}"
@@ -84,6 +84,34 @@ const submit_handler = async (e) => {
     const message_div = document.getElementById(unique_id);
 
     message_loader(message_div);
+
+
+    // fetch bot's response data from server
+    const response = await fetch("http://localhost:5000", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            prompt: data.get("prompt")
+        })
+    })
+
+    clearInterval(load_interval);
+    message_div.innerHTML = "";
+
+    if (response.ok) {
+        const data = await response.json();
+        const parsed_data = data.bot.trim();
+
+        type_text(message_div, parsed_data);
+    } else {
+        const err = await response.text();
+
+        message_div.innerHTML = "Something went wrong";
+
+        alert(err);
+    }
 }
 
 
