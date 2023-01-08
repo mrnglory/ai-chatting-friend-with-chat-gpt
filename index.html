@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
     </head>
     <body>
         <style>
             .chat-content { height: 350px; overflow-y: scroll; }
-            .lien { margin-top: 10px; display: flex; }
+            .line { margin-top: 10px; display: flex; }
             .chat-box { background: #eee; padding: 5px; max-width: 200px; }
             .mine { margin-left: auto; }
         </style>
@@ -17,11 +15,21 @@
             <div class="line">
                 <span class="chat-box">¾È³ç?</span>
             </div>
-            <div class="lien">
-                <span class="chat-box">¾È³ç!</span>
+            <div class="line">
+                <span class="chat-box mine">¾È³ç!</span>
             </div>
         </div>
         <input class="chat-box" id="input">
         <button id="send">Àü¼Û</button>
+        
+        <script>
+            document.querySelector("#send").addEventListener("click", function() {
+                var template = `<div class="line">
+                    <span class="chat-box mine">${ document.querySelector("#input").value }</span>
+                </div>`
+                document.querySelector(".chat-content").insertAdjacentHTML("beforeend", template)
+            })
+        </script>
+
     </body>
 </html>
