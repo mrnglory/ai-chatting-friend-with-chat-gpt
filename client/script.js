@@ -87,7 +87,7 @@ const submit_handler = async (e) => {
 
 
     // fetch bot's response data from server
-    const response = await fetch("http://localhost:5000", {
+    const response = await fetch("https://ai-chatting-friend.onrender.com", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
